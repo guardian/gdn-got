@@ -6,15 +6,21 @@ import logging
 from urllib import quote, urlencode
 from google.appengine.api import urlfetch
 
+import configuration
+
 import py2neo
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), "templates")))
 
+def graph():
+	db_url = configuration.lookup('db_url', 'http://localhost:7474/db/data/')
+	return py2neo.Graph(db_url)
+
 class MainPage(webapp2.RequestHandler):
 	def get(self):
 
-		graph = py2neo.Graph()
+		gdb = graph()
 
 		template = jinja_environment.get_template('index.html')
 		
