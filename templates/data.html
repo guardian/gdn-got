@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Simple python app example{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="article-heading">Data page</h1>
+
+			<blockquote>Information on a things</blockquote>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<h2 class="sub-heading">The name should go here</h2>
+			<p>{{request}}</p>
+			<p>{{path}}</p>
+		</div>
+		<div class="col-md-6">
+			<h2 class="sub-heading">How do I use it?</h2>
+
+			<ol>
+				<li>Add the git repo as a remote to your project repo and pull the template into your new project.</li>
+				<li>That's it.</li>
+			</ol>
+
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -28,5 +28,19 @@ class MainPage(webapp2.RequestHandler):
 
 		self.response.out.write(template.render(template_values))
 
-app = webapp2.WSGIApplication([('/', MainPage)],
+class DataPage(webapp2.RequestHandler):
+	def get(self, path):
+
+		gdb = graph()
+
+		template = jinja_environment.get_template('data.html')
+		
+		template_values = {'request': self.request,
+			'path' : path}
+
+		self.response.out.write(template.render(template_values))
+
+app = webapp2.WSGIApplication([
+	('/', MainPage),
+	webapp2.Route('/<path>', handler=DataPage)],
                               debug=True)
