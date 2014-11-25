@@ -15,16 +15,23 @@
 	<div class="row">
 		<div class="col-md-6">
 			<h2 class="sub-heading">The name should go here</h2>
-			<p>{{request}}</p>
+			<p>{{request_path}}</p>
 			<p>{{path}}</p>
 		</div>
 		<div class="col-md-6">
-			<h2 class="sub-heading">How do I use it?</h2>
+			<h2 class="sub-heading">Results</h2>
 
-			<ol>
-				<li>Add the git repo as a remote to your project repo and pull the template into your new project.</li>
-				<li>That's it.</li>
-			</ol>
+			{{results}}
+
+			{{relationships}}
+
+			{% if relationships %}
+			<ul>
+			{% for rel in relationships %}
+				<li><a href="{{rel.start_node.path}}">{{rel.start_node.name}}</a></li>
+			{% endfor %}
+			</ul>
+			{% endif %}
 
 
 		</div>

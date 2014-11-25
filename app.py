@@ -33,10 +33,16 @@ class DataPage(webapp2.RequestHandler):
 
 		gdb = graph()
 
+		query = 'MATCH (n) WHERE n.path = "{path}" RETURN n'.format(path=path)
+		result = gdb.cypher.execute_one(query)
+
 		template = jinja_environment.get_template('data.html')
 		
-		template_values = {'request': self.request,
-			'path' : path}
+		template_values = {'request_path': self.request.path,
+			'path' : path,
+			'results' : result,
+			'relationships': result.match_incoming(),
+		}
 
 		self.response.out.write(template.render(template_values))
 
