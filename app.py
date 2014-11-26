@@ -13,6 +13,7 @@ import py2neo
 
 import configuration
 import content_api
+import transformers
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), "templates")))
@@ -22,10 +23,6 @@ RelationshipLink = namedtuple('RelationshipLink', ['node', 'label'])
 def graph():
 	db_url = configuration.lookup('db_url', 'http://localhost:7474/db/data/')
 	return py2neo.Graph(db_url)
-
-def relationship_label(rel):
-	logging.info(rel)
-	return rel.type
 
 def find_final_node(path_elements, node):
 	if not path_elements:
@@ -42,7 +39,7 @@ def find_final_node(path_elements, node):
 	return None
 
 def other_node(current_node, relationship):
-	label = relationship_label(relationship)
+	label = transformers.relationship_label(relationship)
 	if relationship.start_node == current_node:
 		return RelationshipLink(relationship.end_node, label)
 	return RelationshipLink(relationship.start_node, label)
@@ -85,11 +82,13 @@ class DataPage(webapp2.RequestHandler):
 			'schema_data': dict([(key[6:], value) for key, value in result.properties.items() if key.startswith('schema')]),
 		}
 
-		if 'capiQuery' in result.properties:
-			logging.info('CAPI terms available')
+		if 'tagQuery' in result.properties:
+			search_content = content_api.search({'tag': result.properties['tagQuery']})
+			json_data = json.loads(search_content)
+			logging.info(json_data)
+			template_values['news_content'] = content_api.read_results(json_data)
 
 		if 'contributorId' in result.properties:
-			logging.info('Result is a contributor')
 			template_values['contributor_content'] = content_api.read_contributor_content(result.properties['contributorId'])
 
 		self.response.out.write(template.render(template_values))

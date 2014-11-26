@@ -51,6 +51,9 @@ def read(content_id, params = None):
 	return result.content
 
 def search(query):
+
+	query['api-key'] = CONTENT_API_KEY
+	
 	url = "http://content.guardianapis.com/search?%s" % urllib.urlencode(query)
 
 	cached_data = memcache.get(url)
@@ -88,5 +91,7 @@ def response_ok(response):
 def read_contributor_content(contributor_id):
 	content = read('/' + contributor_id)
 	json_data = json.loads(content)
+	return read_results(json_data)
 
+def read_results(json_data):
 	return json_data.get('response', {}).get('results', [])

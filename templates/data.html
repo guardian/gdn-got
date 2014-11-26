@@ -51,6 +51,14 @@
 			</ul>
 			{% endif %}
 
+			{% if news_content %}
+			<h2>In the news</h2>
+				<ul>
+					{% for content in news_content %}
+					<li><a href="{{content.webUrl}}">{{content.webTitle}}</a></li>
+					{% endfor %}
+				</ul>
+			{% endif %}
 
 		</div>
 	</div>
