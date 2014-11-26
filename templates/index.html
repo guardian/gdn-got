@@ -6,24 +6,24 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h1 class="article-heading">Simple Python app for Google Appengine</h1>
+			<h1 class="article-heading">Guardian of Things</h1>
 
-			<blockquote>Making it easy to make simple apps</blockquote>
+			<blockquote>A database of everything ever</blockquote>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-md-6">
 			<h2 class="sub-heading">What is this?</h2>
-			<p>This is a template app to provide a basic scaffold for a Python app deployed on Google App Engine.</p>
-			<p>It is meant to provide a good basis for relatively uncomplicated small applications.</p>
+			<p>A prototype for showing how we could create a metadata structure over the Guardian archive and tag system</p>
 		</div>
 		<div class="col-md-6">
-			<h2 class="sub-heading">How do I use it?</h2>
+			<h2 class="sub-heading">Get started</h2>
 
 			<ol>
-				<li>Add the git repo as a remote to your project repo and pull the template into your new project.</li>
-				<li>That's it.</li>
+				{% for category in categories %}
+				<li><a href="{{category.properties.path}}">{{category.properties.name}}</a></li>
+				{% endfor %}
 			</ol>
 
 

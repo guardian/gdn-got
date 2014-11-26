@@ -25,7 +25,7 @@
     (gb)-[:IS_A]->(person),
     (gb)-[:IS_A]->(politician),
     (gb)-[:SUCCEEDED_BY]->(dc),
-    (db)-[:PREDECESSOR]->(gb),
+    (dc)-[:PREDECESSOR]->(gb),
     (uk)-[:IS_A]->(country),
     (twentyFourteen)-[:IS_A]->(year),
     (twentyThirteen)-[:IS_A]->(year),

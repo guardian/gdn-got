@@ -27,9 +27,15 @@ class MainPage(webapp2.RequestHandler):
 
 		gdb = graph()
 
+		query = 'MATCH (c: Category) RETURN c'
+
+		results = gdb.cypher.execute(query)
+
 		template = jinja_environment.get_template('index.html')
 
-		template_values = {}
+		template_values = {
+			'categories' : results.to_subgraph().nodes
+		}
 
 		self.response.out.write(template.render(template_values))
 
