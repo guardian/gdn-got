@@ -45,7 +45,7 @@ def other_node(current_node, relationship):
 	return RelationshipLink(relationship.start_node, label)
 
 def related_nodes (node):
-	return [other_node(node, rel) for rel in node.match()]
+	return [other_node(node, rel) for rel in node.match_outgoing()]
 
 class MainPage(webapp2.RequestHandler):
 	def get(self):
