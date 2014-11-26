@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}Simple python app example{% endblock %}
+{% block title %}{{data.name}}{% endblock %}
 
 {% block content %}
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h1 class="article-heading">Data page</h1>
+			<h1 class="article-heading">{{data.name}}</h1>
 
 			<blockquote>Information on a things</blockquote>
 		</div>
@@ -14,21 +14,19 @@
 
 	<div class="row">
 		<div class="col-md-6">
-			<h2 class="sub-heading">The name should go here</h2>
+			<h2 class="sub-heading">Information</h2>
 			<p>{{request_path}}</p>
 			<p>{{path}}</p>
 		</div>
 		<div class="col-md-6">
-			<h2 class="sub-heading">Results</h2>
+			<h2 class="sub-heading">Relationships</h2>
 
 			{{results}}
 
-			{{relationships}}
-
-			{% if relationships %}
+			{% if related_nodes %}
 			<ul>
-			{% for rel in relationships %}
-				<li><a href="{{rel.start_node.path}}">{{rel.start_node.name}}</a></li>
+			{% for related in related_nodes %}
+				<li>{{related.label}} <a href="/{{related.node.path}}">{{related.node.name}}</a></li>
 			{% endfor %}
 			</ul>
 			{% endif %}
