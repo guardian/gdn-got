@@ -2,11 +2,15 @@ import urlparse
 import urllib
 import logging
 import datetime
+import json
 
 from google.appengine.api.urlfetch import fetch
 from google.appengine.api import memcache
 
+import configuration
+
 CONTENT_API_HOST = 'content.guardianapis.com'
+CONTENT_API_KEY = 'test'
 
 def content_id(url):
 	parsed_url = urlparse.urlparse(url)
@@ -21,8 +25,14 @@ def read(content_id, params = None):
 
 	url = "http://%s%s" % (CONTENT_API_HOST, content_id)
 
+	if not params:
+		params = {}
+
+	params['api-key'] = CONTENT_API_KEY
+
 	if params:
 		url = url + "?" + urllib.urlencode(params)
+
 
 	#logging.info(url)
 
@@ -74,3 +84,9 @@ def response_ok(response):
 		return False
 
 	return True
+
+def read_contributor_content(contributor_id):
+	content = read('/' + contributor_id)
+	json_data = json.loads(content)
+
+	return json_data.get('response', {}).get('results', [])

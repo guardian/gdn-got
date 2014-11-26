@@ -9,9 +9,10 @@ import jinja2
 from urllib import quote, urlencode
 from google.appengine.api import urlfetch
 
-import configuration
-
 import py2neo
+
+import configuration
+import content_api
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), "templates")))
@@ -83,6 +84,13 @@ class DataPage(webapp2.RequestHandler):
 			'data': result.properties,
 			'schema_data': dict([(key[6:], value) for key, value in result.properties.items() if key.startswith('schema')]),
 		}
+
+		if 'capiQuery' in result.properties:
+			logging.info('CAPI terms available')
+
+		if 'contributorId' in result.properties:
+			logging.info('Result is a contributor')
+			template_values['contributor_content'] = content_api.read_contributor_content(result.properties['contributorId'])
 
 		self.response.out.write(template.render(template_values))
 
