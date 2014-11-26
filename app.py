@@ -81,7 +81,7 @@ class DataPage(webapp2.RequestHandler):
 			'results': result,
 			'related_nodes': related_nodes(result),
 			'data': result.properties,
-			'schema_data': dict([(key[5:], value) for key, value in result.properties.items() if key.startswith('schema')]),
+			'schema_data': dict([(key[6:], value) for key, value in result.properties.items() if key.startswith('schema')]),
 		}
 
 		self.response.out.write(template.render(template_values))
