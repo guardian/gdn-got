@@ -47,7 +47,7 @@
     (ukElection2010)-[:IS_A]->(election),
     (ukElection2010)-[:HELD_IN]->(uk),
     (ukElection2010)-[:WON_BY]->(dc),
-    (dc)-[:CONTESTED]->(ukElection2010),
-    (gb)-[:CONTESTED]->(ukElection2010),
+    (dc)-[:CONTESTED_BY]->(ukElection2010),
+    (gb)-[:CONTESTED_BY]->(ukElection2010),
     (ukElection2010)-[:HELD_ON]->(twentyTen),
     (twentyTen)-[:HELD]->(ukElection2010)
