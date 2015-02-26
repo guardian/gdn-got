@@ -20,9 +20,12 @@
 
 
 			{% if data.image %}
-			<div class="representative-image">
-				<img src="{{data.image}}">
-			</div>
+			<img src="{{data.image}}" class="image-responsive">
+			{% endif %}
+
+			{% if data.wikipedia %}
+			<h2>Additional information</h2>
+			<p><a href="{{data.wikipedia}}">Wikipedia entry</a></p>
 			{% endif %}
 
 			{% if schema_data %}
