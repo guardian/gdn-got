@@ -14,12 +14,14 @@ import py2neo
 import configuration
 import content_api
 import nodes
+import gae
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), "templates")))
 
 def graph():
-	db_url = configuration.lookup('db_url', 'http://localhost:7474/db/data/')
+	db_url = configuration.lookup('gdb_url', 'http://localhost:7474/db/data/')
+	logging.info(db_url)
 	return py2neo.Graph(db_url)
 
 class MainPage(webapp2.RequestHandler):
@@ -59,7 +61,7 @@ class DataPage(webapp2.RequestHandler):
 			'results': result,
 			'related_nodes': nodes.related_nodes(result),
 			'data': result.properties,
-			'schema_data': dict([(key[6:], value) for key, value in result.properties.items() if key.startswith('schema')]),
+			'schema_data': dict([(key[6:].lower(), value) for key, value in result.properties.items() if key.startswith('schema')]),
 			'links_here' : nodes.incoming(result),
 		}
 

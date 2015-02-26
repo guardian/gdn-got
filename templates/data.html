@@ -11,11 +11,19 @@
 			{% if data.description %}
 			<blockquote>{{data.description}}</blockquote>
 			{% endif %}
+
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-md-6">
+
+
+			{% if data.image %}
+			<div class="representative-image">
+				<img src="{{data.image}}">
+			</div>
+			{% endif %}
 
 			{% if schema_data %}
 			<h2>Schema data</h2>
