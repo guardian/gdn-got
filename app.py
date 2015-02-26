@@ -68,7 +68,7 @@ class DataPage(webapp2.RequestHandler):
 		if 'tagQuery' in result.properties:
 			search_content = content_api.search({'tag': result.properties['tagQuery']})
 			json_data = json.loads(search_content)
-			logging.info(json_data)
+			#logging.info(json_data)
 			template_values['news_content'] = content_api.read_results(json_data)
 
 		if 'contributorId' in result.properties:

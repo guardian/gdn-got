@@ -3,6 +3,7 @@ import urllib
 import logging
 import datetime
 import copy
+import json
 
 from google.appengine.api.urlfetch import fetch
 from google.appengine.api import memcache
@@ -25,6 +26,9 @@ def from_date(days):
 
 def add_api_key(params):
 
+	if not params:
+		return {'api-key': capi_key()}
+
 	if 'api-key' in params:
 		return params
 
@@ -39,10 +43,10 @@ def read(content_id, params=None):
 
 	url = "http://{host}{content_path}".format(host=capi_host(), content_path=content_id)
 
-	if params:
-		url = url + "?" + urllib.urlencode(params)
+	params = add_api_key(params)
+	url = url + "?" + urllib.urlencode(params)
 
-	#logging.info(url)
+	logging.info(url)
 
 	cached_data = client.get(url)
 
@@ -99,6 +103,10 @@ def response_ok(response):
 
 def read_contributor_content(contributor_id):
 	content = read('/' + contributor_id)
+
+	if not content:
+		return None
+
 	json_data = json.loads(content)
 	return read_results(json_data)
 
