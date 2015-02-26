@@ -9,7 +9,7 @@
     (appointments:Category {name: "Appointments", path: "appointments"}),
     (society:Category {name: "Societies", path: "societies"}),
     (dc:Thing {name: "David Cameron", description: "Old Etonian and current UK prime minster. Occasionally freelances for the Guardian", path: "david-cameron", contributorId: "profile/davidcameron", tagQuery: "politics/davidcameron", schemaName: "David Cameron"}),
-    (gb:Thing {name: "Gordon Brown", path: "gordon-brown", schemaName: "Gordon Brown", tagQuery: "politics/gordon-brown"}),
+    (gb:Thing {name: "Gordon Brown", path: "gordon-brown", schemaName: "Gordon Brown", tagQuery: "politics/gordon-brown", contributorId: "profile/gordonbrown"}),
     (uk:Thing {name: "United Kingdom", path: "uk", schemaName: "United Kingdom"}),
     (chancellor:Thing {name: "Chancellor of the Exchequer", path: "chancellor-of-the-exchequer"}),
     (primeMinister:Thing {name: "Prime Minister", path: "prime-minister"}),
