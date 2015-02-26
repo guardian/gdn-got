@@ -29,10 +29,10 @@
     (dwj:Thing {name: "Diana Wynne-Jones", path: "diana-wynne-jones", schemaUrl: "http://www.leemac.freeserve.co.uk/", schemaDeathDate: "2011-03-26", tagQuery: "books/dianawynnejones", image: "http://i.guim.co.uk/static/w-620/h--/q-95/sys-images/Guardian/Pix/pictures/2014/2/17/1392652123198/Diana-Wynne-Jones-008.jpg", wikipedia: "http://en.wikipedia.org/wiki/Diana_Wynne_Jones"}),
     (slipknot:Thing {name: "Slipknot", path: "slipknot", schemaName: "Slipknot", schemaUrl: "http://www.slipknot1.com/", image: "http://www.slipknot1.com/home/img/bg_group.jpg", tagQuery: "music/slipknot", interviewable: "true"}),
     (bradpitt:Thing {name: "Brad Pitt", path: "brad-pitt", schemaName: "Brad Pitt",
-    schemaSpouse: "http://www.theguardian.com/film/angelinajolie"}),
-    (aj:Thing {name: "Angelina Jolie", path: "angelina-jolie", schemaName: "Angelina Jolie", schemaSpouse: "http://www.theguardian.com/film/bradpitt"}),
-    (unbroken:Thing {name: "Unbroken", path: "film-unbroken", schemaName: "Unbroken", schemaUrl: "http://www.unbrokenfilm.com/"}),
-    (fury:Thing {name: "Fury", path: "film-fury", schemaName: "Fury", schemaUrl: "http://www.unbrokenfilm.com/"}),
+    schemaSpouse: "http://www.theguardian.com/film/angelinajolie", tagQuery: "film/bradpitt", contributorId: "profile/brad-pitt", wikipedia: "http://en.wikipedia.org/wiki/Brad_Pitt", image: "http://upload.wikimedia.org/wikipedia/commons/5/51/Brad_Pitt_Fury_2014.jpg"}),
+    (aj:Thing {name: "Angelina Jolie", path: "angelina-jolie", schemaName: "Angelina Jolie", schemaSpouse: "http://www.theguardian.com/film/bradpitt", tagQuery: "film/angelinajolie"}),
+    (unbroken:Thing {name: "Unbroken", path: "film-unbroken", schemaName: "Unbroken", schemaUrl: "http://www.unbrokenfilm.com/", tagQuery: "film/unbroken"}),
+    (fury:Thing {name: "Fury", path: "film-fury", schemaName: "Fury", schemaUrl: "http://www.unbrokenfilm.com/", tagQuery: "film/fury"}),
     (author)-[:IS_A]->(person),
     (politician)-[:IS_A]->(person),
     (actor)-[:IS_A]->(person),
@@ -80,4 +80,7 @@
     (bradpitt)-[:IS_MARRIED_TO]->(aj),
     (aj)-[:IS_MARRIED_TO]->(bradpitt),
     (bradpitt)-[:APPEARS_IN]->(fury),
-    (bradpitt)-[:DIRECTED]->(fury)
+    (bradpitt)-[:DIRECTED]->(fury),
+    (fury)-[:RELEASED_IN_US_IN]->(twentyFourteen),
+    (aj)-[:DIRECTED]->(unbroken),
+    (unbroken)-[:RELEASED_IN_US_IN]->(twentyFourteen)
