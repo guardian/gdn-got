@@ -27,6 +27,10 @@
     (slipknot:Thing {name: "Slipknot", path: "slipknot", schemaName: "Slipknot", schemaUrl: "http://www.slipknot1.com/", image: "http://www.slipknot1.com/home/img/bg_group.jpg", tagQuery: "music/slipknot", interviewable: "true"}),
     (bradpitt:Thing {name: "Brad Pitt", path: "brad-pitt", schemaName: "Brad Pitt"}),
     (aj:Thing {name: "Angelina Jolie", path: "angelina-jolie", schemaName: "Angelina Jolie"}),
+    (author)-[:IS_A]->(person),
+    (politician)-[:IS_A]->(person),
+    (actor)-[:IS_A]->(person),
+    (director)-[:IS_A]->(person),
     (dc)-[:IS_A]->(person),
     (dc)-[:IS_A]->(politician),
     (dc)-[:MEMBER_OF]->(bullingdonClub),
@@ -62,4 +66,10 @@
     (dc)-[:CONTESTED_BY]->(ukElection2010),
     (gb)-[:CONTESTED_BY]->(ukElection2010),
     (ukElection2010)-[:HELD_ON]->(twentyTen),
-    (twentyTen)-[:HELD]->(ukElection2010)
+    (twentyTen)-[:HELD]->(ukElection2010),
+    (bradpitt)-[:IS_A]->(actor),
+    (bradpitt)-[:IS_A]->(director),
+    (aj)-[:IS_A]->(actor),
+    (aj)-[:IS_A]->(director),
+    (bradpitt)-[:IS_MARRIED_TO]->(aj),
+    (aj)-[:IS_MARRIED_TO]->(bradpitt)
