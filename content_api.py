@@ -125,3 +125,16 @@ def read_obits(node_data):
 	response_data = json.loads(r)
 
 	return response_data.get('response', {}).get('results', [])
+
+def read_interviews(node_data):
+	if not 'tagQuery' in node_data:
+		return []
+
+	r = search({'tag': 'tone/interview,'+ node_data['tagQuery']})
+
+	if not r:
+		return []
+
+	response_data = json.loads(r)
+
+	return response_data.get('response', {}).get('results', [])

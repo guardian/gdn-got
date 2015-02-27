@@ -63,6 +63,7 @@ class DataPage(webapp2.RequestHandler):
 			'data': result.properties,
 			'schema_data': dict([(key[6:].lower(), value) for key, value in result.properties.items() if key.startswith('schema')]),
 			'links_here' : nodes.incoming(result),
+			'interviews' : content_api.read_interviews(result.properties)
 		}
 
 		if 'tagQuery' in result.properties:

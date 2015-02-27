@@ -56,6 +56,15 @@
 			</ul>
 			{% endif %}
 
+			{% if interviews %}
+			<h2>Interviews</h2>
+			<ul>
+				{% for content in interviews %}
+				<li><a href="{{content.webUrl}}">{{content.webTitle}}</a></li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+
 		</div>
 		<div class="col-md-6">
 			<h2 class="sub-heading">Relationships</h2>
