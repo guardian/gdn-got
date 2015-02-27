@@ -76,7 +76,18 @@ class DataPage(webapp2.RequestHandler):
 
 		self.response.out.write(template.render(template_values))
 
+class TitlePage(webapp2.RequestHandler):
+	def get(self):
+		template = jinja_environment.get_template('title.html')
+		
+		template_values = {
+			'app_title': 'gdn-got.appspot.com',
+		}
+
+		self.response.out.write(template.render(template_values))
+
 app = webapp2.WSGIApplication([
 	('/', MainPage),
+	('/title', TitlePage),
 	webapp2.Route('/<path:.*>', handler=DataPage)],
                               debug=True)
