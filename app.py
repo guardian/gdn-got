@@ -74,6 +74,9 @@ class DataPage(webapp2.RequestHandler):
 		if 'contributorId' in result.properties:
 			template_values['contributor_content'] = content_api.read_contributor_content(result.properties['contributorId'])
 
+		if 'schemaDeathDate' in result.properties:
+			template_values['obituaries'] = content_api.read_obits(result.properties)
+
 		self.response.out.write(template.render(template_values))
 
 class TitlePage(webapp2.RequestHandler):
