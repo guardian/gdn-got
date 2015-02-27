@@ -38,6 +38,15 @@
 			</dl>
 			{% endif %}
 
+			{% if obituaries %}
+			<h2>Obituaries</h2>
+			<ul>
+				{% for content in obituaries %}
+				<li><a href="{{content.webUrl}}">{{content.webTitle}}</a></li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+
 			{% if contributor_content %}
 			<h2>For the Guardian</h2>
 			<ul>
